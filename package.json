@@ -3,12 +3,23 @@
   "version": "0.0.1",
   "description": "Test app to learn Backbone.js and Node.js",
   "main": "server.js",
+  "dependencies": {
+    "express": "~3.3.4",
+    "mysql": "2.0.0"
+  },
   "engines": {
     "node": "0.10.13",
     "npm": "1.3.2"
   },
-  "dependencies": {
-    "express": "3.2.4"
-    "mysql": "~2.0.0"
-  }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emfrick/checkbook_app"
+  },
+  "keywords": [
+    "checkbook",
+    "backbone"
+  ],
+  "author": "Eric Frick",
+  "license": "BSD"
 }
+

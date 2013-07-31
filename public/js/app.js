@@ -1,7 +1,7 @@
 $(function(){
    
     // quick jquery test
-    $('#jQueryStatus').html('jQuery Loaded');
+    //$('#jQueryStatus').html('jQuery Loaded');
     
     //////////
     // Models
@@ -51,11 +51,10 @@ $(function(){
             var self = this;
             this.collection.fetch({
                 success: function() {
-                    //alert(JSON.stringify(self.collection.models));
                     self.render();
                 },
                 error: function() {
-                    alert("Uh oh, something went wrong!");
+                    alert("Uh oh, something went wrong!  (AppView /js/app.js)");
                 } 
             });
             
@@ -70,10 +69,6 @@ $(function(){
             var self = this;
             var total = 0.00;
             
-            /////////////////////////////
-            // This isn't working yet!! 
-            /////////////////////////////
-                        
             // Underscore call to iterate over each model in the collection
             // and append it to the the #transactions ID.
             _.each(this.collection.models, function(item) {
@@ -83,13 +78,8 @@ $(function(){
             }, this);
             
             $('#total').html('Total Spent This Month: $' + total);
+
             // Allows for chaining
-            
-            ///////////////////////////////////////
-            // End of the part that isn't working
-            ///////////////////////////////////////
-            
-            // Allows for chanining
             return this;
         },
                 
@@ -108,7 +98,7 @@ $(function(){
     // Holds all the transactions
     var CheckBook = Backbone.Collection.extend({
         model: Transaction,
-        url: '/api/transactions'
+        url: '/api/transactions/all'
     });
     
     /////////////////

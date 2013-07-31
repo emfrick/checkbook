@@ -30,20 +30,22 @@
 
     <div class='container-fluid'>
         <div class='row-fluid'>
-            <div class='span3 well border'>
+            <div class='span3 well'>
                 <p>Well Content</p>
             </div>
-            <div class='span7 border' id='transactions'>
-                <!-- Transactions get populated here -->
-                <p>Transactions</p>
+            <div class='span7'>
+                <div class='row-fluid'>
+                    <div class='span12' id='transactions'>
+                        <!-- Transactions get populated here -->
+                    </div>
+                </div>
+                <div class='row-fluid'>
+                    <a href="#" class="btn input-block-level btn-primary">Add New Transaction</a>
+                </div>
             </div>
-            <div class='span2 well border'>
-                <p>Totals and whatnot</p>
+            <div class='span2 well' id='total'>
+                Total Spent This Month: $0
             </div>
-        </div>
-        <div class='row-fluid border' id='total'>Total Spent This Month: $0</div>
-        <div class='row-fluid border' id='jQueryStatus'>
-            <div class='span12'>jQuery Not Loaded</div>
         </div>
     </div>
 
@@ -52,24 +54,24 @@
     <div class='single-transaction'>
     <div class='row-fluid'>
         <div class='span4 offset1'>
-            <ul>
-                <li>Date: <%= date %></li>
+            <ul class='unstyled'>
+                <li>Date: <%= transaction_date.slice(0,10) %></li>
                 <li>Amount: $ <%= amount %></li>
             </ul>
         </div>
         <div class='span4 offset1'>
-            <ul>
+            <ul class='unstyled'>
                 <li>Description: <%= description %></li>
                 <li>Category: <%= category %></li>
             </ul>
         </div>
     </div>
     <div class='row-fluid'>
-        <div class='span4'>
-            <div class='btn' id='save<%= id %>'>Save</div>
+        <div class='span4 offset1'>
+            <div class='btn input-block-level btn-primary' id='save<%= id %>'>Save</div>
         </div>
-        <div class='span4'>
-            <div class='btn' id='delete<%= id %>'>Delete</div>
+        <div class='span4 offset1'>
+            <div class='btn input-block-level btn-primary' id='delete<%= id %>'>Delete</div>
         </div>
     </div>
     </div>

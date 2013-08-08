@@ -37,17 +37,17 @@ $(function(){
             return this;
         }
     });
-    
+
     // View for all transactions
     var AppView = Backbone.View.extend({
         el: $('#transactions'),
-        
+
         initialize: function() {
             // Anything using 'this' keyword needs to be bound here
             _.bindAll(this, 'render', 'renderSingleTransaction');
             
             // Create a new collection for this AppView
-            this.collection = new CheckBook();
+            this.collection = new Checkbook();
             var self = this;
             this.collection.fetch({
                 success: function() {
@@ -57,7 +57,7 @@ $(function(){
                     alert("Uh oh, something went wrong!  (AppView /js/app.js)");
                 } 
             });
-            
+
             // Listen for an 'add' and 'reset' events to this collection
             this.collection.on('add',   this.renderSingleTransaction, this);
             this.collection.on('reset', this.render, this);
@@ -77,7 +77,9 @@ $(function(){
                 console.log(total);
             }, this);
             
-            $('#total').html('Total Spent This Month: $' + total);
+            $('#deposits').html('$' + total);
+            $('#withdrawls').html('$' + total);
+            $('#totals').html('$' + total);
 
             // Allows for chaining
             return this;
@@ -96,7 +98,7 @@ $(function(){
     ///////////////
     
     // Holds all the transactions
-    var CheckBook = Backbone.Collection.extend({
+    var Checkbook = Backbone.Collection.extend({
         model: Transaction,
         url: '/api/transactions/all'
     });

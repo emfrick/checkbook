@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>CheckBook</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href='css/main.css' rel='stylesheet' />
@@ -40,11 +41,44 @@
                     </div>
                 </div>
                 <div class='row-fluid'>
-                    <a href="#" class="btn input-block-level btn-primary">Add New Transaction</a>
+                    <div class="btn input-block-level btn-primary" id='addnew'>Add New Transaction</div>
                 </div>
             </div>
-            <div class='span2 well' id='total'>
-                Total Spent This Month: $0
+            <div class='span2'>
+                <table class='table table-bordered'>
+                    <thead>
+                    <tr>
+                        <th>
+                            <h4>Totals</h4>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class='success'>
+                        <td>
+                            <h6>Deposits:</h6>
+                        </td>
+                        <td>
+                            <h6 id='deposits'>$0.00</h6>
+                        </td>
+                    </tr>
+                    <tr class='error'>
+                        <td>
+                            <h6>Withdrawls:</h6>
+                        </td>
+                        <td>
+                            <h6 id='withdrawls'>$0.00</h6>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <thead>
+                    <tr>
+                        <th>
+                            <h4 id='totals'>$0.00</h4>
+                        </th>
+                    </tr>
+                    </thead>
+                <table>
             </div>
         </div>
     </div>

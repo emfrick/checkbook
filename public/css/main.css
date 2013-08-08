@@ -18,3 +18,11 @@
 .btn {
     margin-bottom: 1.0%;
 }
+
+.divider-b {
+    border-bottom: 1px solid black;
+}
+
+.divider-t {
+    border-top: 1px solid black;
+}

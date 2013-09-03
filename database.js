@@ -12,7 +12,7 @@ exports.conn = mysql.createConnection({
 // Get all transactions ever
 exports.getAll = function(callback) {
     var strQuery = "SELECT * FROM transactions " +
-                   "ORDER BY transaction_date";
+                   "ORDER BY date";
     console.log(strQuery);
 
     this.conn.query(strQuery, function(err, rows, fields) {
@@ -25,7 +25,7 @@ exports.getAll = function(callback) {
 // Get all transactions within a given year
 exports.getByYear = function(year, callback) {
     var strQuery = "SELECT * FROM transactions " +
-                   "WHERE transaction_date " + 
+                   "WHERE date " + 
                    "BETWEEN DATE('" + year + "-01-01') " +
                    "AND DATE('" + year + "-12-31')";
     console.log(strQuery);
@@ -43,7 +43,7 @@ exports.getByMonth = function(year, month, callback) {
     var lastday = new Date(year, month, 0).getDate();
 
     var strQuery = "SELECT * FROM transactions " +
-                   "WHERE transaction_date " +
+                   "WHERE date " +
                    "BETWEEN DATE('" + year + "-" + month + "-01') " +
                    "AND DATE('" + year + "-" + month + "-" + lastday + "')";
     console.log(strQuery);
@@ -58,7 +58,7 @@ exports.getByMonth = function(year, month, callback) {
 // Get all transactions that happened on a certain day
 exports.getByDay = function(year, month, day, callback) {
     var strQuery = "SELECT * FROM transactions " +
-                   "WHERE transaction_date = DATE('" + year + "-" + month + "-" + day + "')";
+                   "WHERE date = DATE('" + year + "-" + month + "-" + day + "')";
     console.log(strQuery);
 
     this.conn.query(strQuery, function(err, rows, fields) {
@@ -83,7 +83,7 @@ exports.getById = function(id, callback) {
 
 // Insert a new transaction given a date (year, month, day)
 exports.insert = function(year, month, day, description, category, amount, callback) {
-    var strQuery = "INSERT INTO transactions (transaction_date, description, category, amount) " +
+    var strQuery = "INSERT INTO transactions (date, description, category, amount) " +
                    "VALUES (DATE('" + year  + "-" + month + "-" + day + "'),'" + description + "','" + category + "','" + amount + "')";
     console.log(strQuery);
 
@@ -91,5 +91,29 @@ exports.insert = function(year, month, day, description, category, amount, callb
         if (err) throw err;
 
         callback(rows.insertId);
+    });
+};
+
+exports.update = function(id, year, month, day, description, category, amount, callback) {
+    var strQuery = "UPDATE transactions " + 
+                   "SET date=DATE('" + year  + "-" + month + "-" + day + "'), description='" + description + "', category='" + category + "', amount='" + amount + "' WHERE id='" + id + "'";
+    console.log(strQuery);
+
+    this.conn.query(strQuery, function(err, rows) {
+        if (err) throw err;
+
+        callback(rows.insertId);
+    });
+};
+
+exports.delete = function(id, callback) {
+    var strQuery = "DELETE FROM transactions WHERE id='" + id + "'";
+
+    console.log(strQuery);
+
+    this.conn.query(strQuery, function(err, rows) {
+        if (err) throw err;
+        console.log(rows);
+        callback(rows);
     });
 };

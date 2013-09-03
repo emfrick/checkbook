@@ -1,111 +1,202 @@
-$(function(){
-   
-    // quick jquery test
-    //$('#jQueryStatus').html('jQuery Loaded');
+$(function() {
+    
+    // If using localStorage, uncomment this
+    //var storageloc = new Backbone.LocalStorage("checkbookapp");
+    
+    ///////////////
+    // Collections
+    ///////////////
+    var Transactions = Backbone.Collection.extend({
+        //localStorage: storageloc
+        
+        url: '/api/transactions'
+    });
     
     //////////
     // Models
     //////////
-    
-    // Model for a single transaction
     var Transaction = Backbone.Model.extend({
-        defaults: {
-            date: new Date().toJSON().slice(0,10),
-            description: 'None',
-            category: 0,
-            amount: 0.00,
-            event: 'None'
-        },
-        
-        idAttribute: "_id"
+        //localStorage: storageloc
+        urlRoot: "/api/transactions/id"
     });
     
     /////////
     // Views
     /////////
-    
-    // View for a single transaction
-    var TransactionView = Backbone.View.extend({
-        tagName:"div",
-        className:"transactionContainer",
-        template:$("#transactionTemplate").html(),
-
-        render:function () {
-            var tmpl = _.template(this.template); //tmpl is a function that takes a JSON object and returns html
-
-            this.$el.html(tmpl(this.model.toJSON())); //this.el is what we defined in tagName. use $el to get access to jQuery html() function
-            return this;
-        }
-    });
-
-    // View for all transactions
-    var AppView = Backbone.View.extend({
-        el: $('#transactions'),
-
-        initialize: function() {
-            // Anything using 'this' keyword needs to be bound here
-            _.bindAll(this, 'render', 'renderSingleTransaction');
+    var TransactionList = Backbone.View.extend({
+        
+        // Which element (in this case class) in the html page do we want to render in
+        el: '.page',
+        
+        render: function() {
+            // Create a new "Transactions" collection
+            var transactions = new Transactions();
             
-            // Create a new collection for this AppView
-            this.collection = new Checkbook();
+            // Take the "element" defined by "el" and update its html
             var self = this;
-            this.collection.fetch({
-                success: function() {
-                    self.render();
+            transactions.fetch({
+                success: function(transactions) {
+                    console.log(transactions.models);
+                    var total = 0.00;
+                    _.each(transactions.models, function(t) {
+                        total += t.get('amount');
+                    });
+                    var template = _.template($('#transaction-list-template').html(), { transactions: transactions.models, total: total });
+                    self.$el.html(template);
                 },
                 error: function() {
-                    alert("Uh oh, something went wrong!  (AppView /js/app.js)");
-                } 
+                    self.$el.html("ERROR: Could not fetch transaction!");
+                }
             });
-
-            // Listen for an 'add' and 'reset' events to this collection
-            this.collection.on('add',   this.renderSingleTransaction, this);
-            this.collection.on('reset', this.render, this);
-        },
-                
-        render: function() {
-            // Save the current 'this' as 'self', so we can call the $el.append
-            // within the UnderscoreJS function
-            var self = this;
-            var total = 0.00;
-            
-            // Underscore call to iterate over each model in the collection
-            // and append it to the the #transactions ID.
-            _.each(this.collection.models, function(item) {
-                //self.renderSingleTransaction(item);
-                total = (+total) + (+item.get('amount'));
-                console.log(total);
-            }, this);
-            
-            $('#deposits').html('$' + total);
-            $('#withdrawls').html('$' + total);
-            $('#totals').html('$' + total);
-
-            // Allows for chaining
-            return this;
-        },
-                
-        renderSingleTransaction: function(item) {
-            var view = new TransactionView({ model: item });
-            this.$el.append(view.render().el);
-            
-            return this;
         }
     });
     
-    ///////////////
-    // Collections
-    ///////////////
-    
-    // Holds all the transactions
-    var Checkbook = Backbone.Collection.extend({
-        model: Transaction,
-        url: '/api/transactions/all'
+    var EditTransaction = Backbone.View.extend({
+        
+        // Which element (in this case class) in the html page do we want to render in
+        el: '.page',
+        
+        render: function(options) {
+            var self = this;
+            console.log("EditTransaction ID - " + options.id);
+            if(options.id) {
+                // GET request
+                this.transaction = new Transaction({ id: options.id });
+                
+                self.transaction.fetch({ // GET /transactions/:id
+                    success : function(transaction) {
+                        transaction.set("date", transaction.get("date").substring(0,10));
+                        console.log(transaction.get("date"));
+                        var template = _.template($('#edit-list-template').html(), { transaction : transaction });
+                        self.$el.html(template);
+                    },
+                    error : function(err) {
+                        console.log("ERROR: Could not fetch transaction!" + err);
+                    }
+                });
+                
+            }
+            else {
+                // Since we don't need to do a fetch, just render the template
+                // Template now doesn't need an object as the second argument, because we have no data
+                var template = _.template($('#edit-list-template').html(), { transaction : null });
+                this.$el.html(template);
+            }
+        },
+                
+        events :{
+            'submit .edit-transaction-form' : 'saveTransaction',
+            'click .delete' : 'deleteTransaction'
+        },
+        
+        // An 'event' gets passed to this function on the submit action,
+        // which can then call 'currentTarget', effectively returning the form
+        saveTransaction : function(evt) {
+            var transactionDetails = $(evt.currentTarget).serializeObject();
+            console.log(transactionDetails);
+            
+            var transaction = new Transaction();
+            transaction.save(transactionDetails, {
+                success: function() {
+                    router.navigate('', { trigger: true });
+                },
+                        
+                error: function() {
+                    console.log("ERROR: Could not save transaction!");
+                }
+            });
+            
+            // Return false to stop the browser from refreshing
+            return false;
+        },
+        
+        deleteTransaction : function(evt) {
+            this.transaction.destroy({
+                success: function() {
+                    router.navigate('', { trigger : true });
+                },
+                error: function() {
+                    console.log("ERROR: Could not destroy transaction!");
+                }
+            });
+            return false;
+        }
+    });
+
+
+
+    //////////
+    // Routes
+    //////////
+    var Router = Backbone.Router.extend({
+        
+        // Define all your pages and the corresponding actions here
+        routes: {
+            '': 'home',
+            'new' : 'editTransaction',
+            'edit/:id' : 'editTransaction',
+            ':page' : 'globalalert' // Fallthrough to log any requests we get that don't have a page defined
+        }
+    });
+
+    //////////////////
+    // Instantiations
+    //////////////////
+    var transactionList = new TransactionList();
+    var editList = new EditTransaction();
+    var router   = new Router();
+
+
+    /////////////
+    // Listeners
+    /////////////
+
+    // Whenever we hit 'home' (aka '/')
+    router.on('route:home', function() {
+        console.log("Loaded the homepage");
+        
+        // Call the render function of the TransactionList's instantiated object
+        transactionList.render();
     });
     
-    /////////////////
-    // Instantiation
-    /////////////////
-    new AppView();
+    router.on('route:editTransaction', function(id) {
+        console.log("Loaded Edit Transaction Page for ID - " + id);
+
+        editList.render({ id : id });
+    });
+    
+    // Log every page hit
+    router.on('route:globalalert', function(page) {
+        console.log("Loaded page: " + page);
+    });
+
+    // Start Backbone listening to the URL
+    Backbone.history.start();
+    
+    
+    
+    /////////////
+    // Resources
+    /////////////
+    
+    // This resource will take any jQuery Form Object
+    // and convert the entire thing into a JSON object
+    // Found at:
+    // https://github.com/thomasdavis/backbonetutorials/tree/gh-pages/videos/beginner
+    $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
 
 });

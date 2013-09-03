@@ -113,7 +113,6 @@ exports.delete = function(id, callback) {
 
     this.conn.query(strQuery, function(err, rows) {
         if (err) throw err;
-        console.log(rows);
         callback(rows);
     });
 };

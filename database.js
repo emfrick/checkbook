@@ -81,6 +81,18 @@ exports.getById = function(id, callback) {
     });
 };
 
+// Get the categories
+exports.getCategories = function(callback) {
+    var strQuery = "SELECT * FROM categories ORDER BY id";
+    console.log(strQuery);
+
+    this.conn.query(strQuery, function(err, rows, fields) {
+        if (err) throw err;
+
+        callback(rows);
+    });
+};
+
 // Insert a new transaction given a date (year, month, day)
 exports.insert = function(year, month, day, description, category, amount, callback) {
     var strQuery = "INSERT INTO transactions (date, description, category, amount) " +

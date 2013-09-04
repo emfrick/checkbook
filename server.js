@@ -37,7 +37,6 @@ server.listen(port, host, function() {
 ////////////////////
 // Setup the routes
 ////////////////////
-/*
 app.all('*', function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -45,7 +44,6 @@ app.all('*', function(req, res, next){
     res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
     next();
 });
-*/
 
 app.get("/api", function(req, res) {
     return res.send("API is running...");
@@ -126,7 +124,7 @@ app.post("/api/transactions/id", function(req, res) {
       year      = date.substring(0,4);
       month     = date.substring(5,7);
       day       = date.substring(8,10);
-    description = transaction.description.replace("'","\\'");
+    description = transaction.description.replace(/'/g,"\\'");
     category    = (!transaction.category) ? "" : transaction.category;
     amount      = transaction.amount;
 
@@ -155,7 +153,7 @@ app.put("/api/transactions/id/:id", function(req, res) {
       year      = date.substring(0,4);
       month     = date.substring(5,7);
       day       = date.substring(8,10);
-    description = transaction.description.replace("'","\\'");
+    description = transaction.description.replace(/'/g,"\\'");
     category    = (!transaction.category) ? "" : transaction.category;
     amount      = transaction.amount;
 

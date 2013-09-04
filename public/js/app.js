@@ -1,6 +1,24 @@
 $(function() {
     
-    // If using localStorage, uncomment this
+    var date = new Date();
+    var year = date.getYear();
+    
+    var months = {
+        "01" : "January",
+        "02" : "February",
+        "03" : "March",
+        "04" : "April",
+        "05" : "May",
+        "06" : "June",
+        "07" : "July",
+        "08" : "August",
+        "09" : "September",
+        "10" : "October",
+        "11" : "November",
+        "12" : "December"
+        
+    };
+    
     //var storageloc = new Backbone.LocalStorage("checkbookapp");
     
     ///////////////
@@ -9,7 +27,11 @@ $(function() {
     var Transactions = Backbone.Collection.extend({
         //localStorage: storageloc
         
-        url: '/api/transactions'
+        url: 'http://192.168.0.110:10080/api/transactions'
+    });
+    
+    var Categories = Backbone.Collection.extend({
+        url: 'http://192.168.0.110:10080/api/categories'
     });
     
     //////////
@@ -17,7 +39,7 @@ $(function() {
     //////////
     var Transaction = Backbone.Model.extend({
         //localStorage: storageloc
-        urlRoot: "/api/transactions/id"
+        urlRoot: "http://192.168.0.110:10080/api/transactions/id"
     });
     
     /////////
@@ -31,6 +53,11 @@ $(function() {
         render: function() {
             // Create a new "Transactions" collection
             var transactions = new Transactions();
+            
+            var date = new Date();
+            var month = date.getMonth() + 1; 
+            month = "0" + month;
+            $('#page-header').html(months[month]);
             
             // Take the "element" defined by "el" and update its html
             var self = this;
@@ -58,6 +85,7 @@ $(function() {
         
         render: function(options) {
             var self = this;
+            $('#page-header').html('Details');
             console.log("EditTransaction ID - " + options.id);
             if(options.id) {
                 // GET request
@@ -96,6 +124,10 @@ $(function() {
             console.log(transactionDetails);
             
             var transaction = new Transaction();
+            console.log("== SAVING ==");
+            console.log(transaction.get("date"));
+            console.log(transactionDetails.date);
+            console.log("==  DONE  ==");
             transaction.save(transactionDetails, {
                 success: function() {
                     router.navigate('', { trigger: true });

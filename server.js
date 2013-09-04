@@ -37,6 +37,7 @@ server.listen(port, host, function() {
 ////////////////////
 // Setup the routes
 ////////////////////
+/*
 app.all('*', function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -44,6 +45,7 @@ app.all('*', function(req, res, next){
     res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
     next();
 });
+*/
 
 app.get("/api", function(req, res) {
     return res.send("API is running...");

@@ -27,11 +27,11 @@ $(function() {
     var Transactions = Backbone.Collection.extend({
         //localStorage: storageloc
         
-        url: 'http://192.168.0.110:10080/api/transactions'
+        url: '/api/transactions'
     });
     
     var Categories = Backbone.Collection.extend({
-        url: 'http://192.168.0.110:10080/api/categories'
+        url: '/api/categories'
     });
     
     //////////
@@ -39,7 +39,7 @@ $(function() {
     //////////
     var Transaction = Backbone.Model.extend({
         //localStorage: storageloc
-        urlRoot: "http://192.168.0.110:10080/api/transactions/id"
+        urlRoot: "/api/transactions/id"
     });
     
     /////////

@@ -45,7 +45,8 @@ exports.getByMonth = function(year, month, callback) {
     var strQuery = "SELECT * FROM transactions " +
                    "WHERE date " +
                    "BETWEEN DATE('" + year + "-" + month + "-01') " +
-                   "AND DATE('" + year + "-" + month + "-" + lastday + "')";
+                   "AND DATE('" + year + "-" + month + "-" + lastday + "') " +
+                   "ORDER BY date";
     console.log(strQuery);
 
     this.conn.query(strQuery, function(err, rows, fields) {

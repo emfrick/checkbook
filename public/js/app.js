@@ -50,13 +50,15 @@ $(function() {
         // Which element (in this case class) in the html page do we want to render in
         el: '.page',
         
-        render: function() {
+        render: function(options) {
             // Create a new "Transactions" collection
             var transactions = new Transactions();
+
+            if (options.year && options.month) {
+                transactions.url = '/api/transactions/' + options.year + '/' + options.month;
+            }
             
-            var date = new Date();
-            var month = date.getMonth() + 1; 
-            month = "0" + month;
+            var month = options.month;
             $('#page-header').html(months[month]);
             
             // Take the "element" defined by "el" and update its html
@@ -167,6 +169,7 @@ $(function() {
             '': 'home',
             'new' : 'editTransaction',
             'edit/:id' : 'editTransaction',
+            ':year/:month' : 'viewMonth',
             ':page' : 'globalalert' // Fallthrough to log any requests we get that don't have a page defined
         }
     });
@@ -186,15 +189,25 @@ $(function() {
     // Whenever we hit 'home' (aka '/')
     router.on('route:home', function() {
         console.log("Loaded the homepage");
+
+        var d = new Date();
+        var month = d.getMonth() + 1;
+        var month = "0" + month;
         
         // Call the render function of the TransactionList's instantiated object
-        transactionList.render();
+        transactionList.render({ month : month });
     });
     
     router.on('route:editTransaction', function(id) {
         console.log("Loaded Edit Transaction Page for ID - " + id);
 
         editList.render({ id : id });
+    });
+
+    router.on('route:viewMonth', function(year, month) {
+        console.log("Loading specific month: " + month + "/" + year);
+
+        transactionList.render({ year: year, month : month });
     });
     
     // Log every page hit

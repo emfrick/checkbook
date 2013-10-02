@@ -97,7 +97,9 @@ $(function() {
                     success : function(transaction) {
                         transaction.set("date", transaction.get("date").substring(0,10));
                         console.log(transaction.get("date"));
-                        var template = _.template($('#edit-list-template').html(), { transaction : transaction });
+                        var tAmount = transaction.get('amount');
+                        var tType = (tAmount < 0) ? "debit" : "credit";
+                        var template = _.template($('#edit-list-template').html(), { transaction : transaction, type : tType });
                         self.$el.html(template);
                     },
                     error : function(err) {
@@ -116,7 +118,8 @@ $(function() {
                 
         events :{
             'submit .edit-transaction-form' : 'saveTransaction',
-            'click .delete' : 'deleteTransaction'
+            'click .delete' : 'deleteTransaction',
+            'focus #amount' : 'clearInput'
         },
         
         // An 'event' gets passed to this function on the submit action,
@@ -154,6 +157,12 @@ $(function() {
                 }
             });
             return false;
+        },
+
+        clearInput: function(evt) {
+            if (evt.target.value == '0.00') {
+                evt.target.value = '';
+            }
         }
     });
 
@@ -192,7 +201,9 @@ $(function() {
 
         var d = new Date();
         var month = d.getMonth() + 1;
-        var month = "0" + month;
+        if (month < 10) {
+            var month = "0" + month;
+        }
         
         // Call the render function of the TransactionList's instantiated object
         transactionList.render({ month : month });

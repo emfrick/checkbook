@@ -3,7 +3,7 @@
 <head>
     <title>Checkbook Frontend</title>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <!--<link href='bootstrap/css/bootstrap.min.css' rel='stylesheet'>-->
 </head>
@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id='toggler'>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="#/new">New Transaction</a></li>
+                <li><a href="#/new" data-toggle="collapse" data-target="#toggler">New Transaction</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">By Month <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -64,15 +64,17 @@
         
     </div>
     
+    <!-- LIST TEMPLATE -->
     <script type='text/template' id='transaction-list-template'>
         <div class='table-responsive'>
         <table class='table table-striped table-condensed'>
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th class='hidden-xs'>Date</th>
                     <th>Description</th>
-                    <th>Amount</th>
-                    <th>Category</th>
+                    <th class='hidden-xs'>Debit</th>
+                    <th class='hidden-xs'>Credit</th>
+                    <th class='hidden-xs'>Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -85,12 +87,25 @@
                         var year = tDate.substring(0,4);
                         var month = tDate.substring(5,7);
                         var day = tDate.substring(8,10);
+          
+                        // Get the description
+                        var tDesc = transaction.get('description');
+
+                        // Get the amount
+                        var tAmount = transaction.get('amount');
                 %>
                     <tr>
-                        <td><%= month %>/<%= day %>/<%= year %></td>
-                        <td><%= transaction.get('description') %></td>
-                        <td>$ <%= transaction.get('amount').toFixed(2) %></td>
-                        <td><%= transaction.get('category') %></td>
+                        <td class='hidden-xs'><%= month %>/<%= day %>/<%= year %></td>
+                        <td><%= tDesc %></td>
+                        
+                        <% if (tAmount < 0) { %>
+                            <td class='hidden-xs'>$ <%= Math.abs(tAmount).toFixed(2) %></td>
+                            <td class='hidden-xs'></td>
+                        <% } else { %>
+                            <td class='hidden-xs'></td>
+                            <td class='hidden-xs'>$ <%= Math.abs(tAmount).toFixed(2) %></td>
+                        <% } %>
+                        <td class='hidden-xs'><%= transaction.get('category') %></td>
                         <td><a href='#/edit/<%= transaction.id %>' class='btn btn-info'>Edit</a></td>
                     </tr>
                 <% }); %>
@@ -109,23 +124,40 @@
         
     </script>
     
+    <!-- EDIT TEMPLATE -->
     <script type='text/template' id='edit-list-template'>
+    
+        <%
+            var head = transaction ? "Edit" : "New";
+            var date = transaction ? transaction.get("date") : "";
+            var desc = transaction ? transaction.get("description") : "";
+            var amt  = transaction ? transaction.get("amount").toFixed(2) : "0.00";
+            var btn  = transaction ? "Save Changes" : "Create";
+        %>
                 
         <form class='edit-transaction-form'>
-            <legend><%= transaction ? 'Edit' : 'New' %> Transaction</legend>
+            <legend><%= head %> Transaction</legend>
             <div class='form-group'>
                 <label for='date'>Date</label>
-                <input type='date' class='form-control' name='date' value='<%= transaction ? transaction.get("date") : ""%>' />
+                <input type='date' class='form-control' name='date' value='<%= date %>' />
             </div>
                 
             <div class='form-group'>
                 <label for='description'>Description</label>
-                <input type='text' class='form-control' name='description' value="<%= transaction ? transaction.get('description') : ''%>" />
+                <input type='text' class='form-control' name='description' value='<%= desc %>' />
             </div>
             
             <div class='form-group'>
                 <label for='amount'>Amount</label>
-                <input type='text' class='form-control' name='amount' value='<%= transaction ? transaction.get("amount").toFixed(2) : "$0.00"%>' />
+                <input type='text' class='form-control' id='amount' name='amount' value='<%= "$" + Math.abs(amt).toFixed(2) %>' />
+            </div>
+
+            <div class='form-group'>
+                <label for='type'>Type</label>
+                <select class='form-control btn-default' name='type'>
+                    <option value='debit'>Debit</option>
+                    <option value='credit' <%= (amt > 0.00) ? "selected" : "" %>>Credit</option>
+                </select>
             </div>
             
             <div class='form-group'>
@@ -135,7 +167,7 @@
                 </select>
             <hr />
             
-            <button type='submit' class='btn btn-primary'><%= transaction ? 'Save Changes' : 'Create' %></button>
+            <button type='submit' class='btn btn-primary'><%= btn %></button>
             <a href='/' class='btn btn-default'>Cancel</a>
             <% if(transaction) { %>
                 <input type='hidden' name='id' value='<%= transaction.id %>' />

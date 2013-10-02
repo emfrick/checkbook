@@ -1675,3 +1675,35 @@ SELECT * FROM transactions WHERE date BETWEEN DATE('2013-09-01') AND DATE('2013-
 SELECT * FROM transactions WHERE id='46'
   Getting transactions for this month: 10
 SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 46
+SELECT * FROM transactions WHERE id='46'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date

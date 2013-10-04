@@ -160,7 +160,7 @@ $(function() {
         },
 
         clearInput: function(evt) {
-            if (evt.target.value == '0.00') {
+            if (evt.target.value == '$0.00') {
                 evt.target.value = '';
             }
         }

@@ -1707,3 +1707,318 @@ SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-
 SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
   Getting transactions for this month: 10
 SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+192.168.0.110 10080
+ExpressJS server started on @[192.168.0.110], port [10080], in [development] mode.
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-15
+      year:      2013
+      month:     10
+      day:       15
+    DESCRIPTION: Surgery - Hospital
+    CATEGORY:    1
+    AMOUNT:      -347.69
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-15'),'Surgery - Hospital','1','-347.69')
+SELECT * FROM transactions WHERE id='115'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-23
+      year:      2013
+      month:     10
+      day:       23
+    DESCRIPTION: Surgery - Anesthesia
+    CATEGORY:    1
+    AMOUNT:      -75.40
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-23'),'Surgery - Anesthesia','1','-75.40')
+SELECT * FROM transactions WHERE id='116'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-02
+      year:      2013
+      month:     10
+      day:       02
+    DESCRIPTION: Parking 
+    CATEGORY:    1
+    AMOUNT:      -120
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-02'),'Parking ','1','-120')
+SELECT * FROM transactions WHERE id='117'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 103
+SELECT * FROM transactions WHERE id='103'
+  Updating a transaction
+    ID:          103
+    DATE:        2013-10-01
+      year:      2013
+      month:     10
+      day:       01
+    DESCRIPTION: Rent
+    CATEGORY:    1
+    AMOUNT:      -940
+UPDATE transactions SET date=DATE('2013-10-01'), description='Rent', category='1', amount='-940' WHERE id='103'
+SELECT * FROM transactions WHERE id='0'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-10
+      year:      2013
+      month:     10
+      day:       10
+    DESCRIPTION: Electric
+    CATEGORY:    1
+    AMOUNT:      $-93.13
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-10'),'Electric','1','$-93.13')
+SELECT * FROM transactions WHERE id='118'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-02
+      year:      2013
+      month:     10
+      day:       02
+    DESCRIPTION: Gas
+    CATEGORY:    1
+    AMOUNT:      -19.39
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-02'),'Gas','1','-19.39')
+SELECT * FROM transactions WHERE id='119'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-30
+      year:      2013
+      month:     10
+      day:       30
+    DESCRIPTION: Comcast
+    CATEGORY:    1
+    AMOUNT:      -124.35
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-30'),'Comcast','1','-124.35')
+SELECT * FROM transactions WHERE id='120'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-14
+      year:      2013
+      month:     10
+      day:       14
+    DESCRIPTION: Verizon 
+    CATEGORY:    1
+    AMOUNT:      -162.48
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-14'),'Verizon ','1','-162.48')
+SELECT * FROM transactions WHERE id='121'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 118
+SELECT * FROM transactions WHERE id='118'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Updating a transaction
+    ID:          118
+    DATE:        2013-10-10
+      year:      2013
+      month:     10
+      day:       10
+    DESCRIPTION: Electric
+    CATEGORY:    1
+    AMOUNT:      -93.13
+UPDATE transactions SET date=DATE('2013-10-10'), description='Electric', category='1', amount='-93.13' WHERE id='118'
+SELECT * FROM transactions WHERE id='0'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-31
+      year:      2013
+      month:     10
+      day:       31
+    DESCRIPTION: Pays
+    CATEGORY:    1
+    AMOUNT:      6600
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-31'),'Pays','1','6600')
+SELECT * FROM transactions WHERE id='122'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for 09/2013
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-09-01') AND DATE('2013-09-30') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-06
+      year:      2013
+      month:     10
+      day:       06
+    DESCRIPTION: 
+    CATEGORY:    1
+    AMOUNT:      -374.84
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-06'),'','1','-374.84')
+SELECT * FROM transactions WHERE id='123'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 123
+SELECT * FROM transactions WHERE id='123'
+  Updating a transaction
+    ID:          123
+    DATE:        2013-10-06
+      year:      2013
+      month:     10
+      day:       06
+    DESCRIPTION: Tee loan
+    CATEGORY:    1
+    AMOUNT:      $374.84
+UPDATE transactions SET date=DATE('2013-10-06'), description='Tee loan', category='1', amount='$374.84' WHERE id='123'
+SELECT * FROM transactions WHERE id='0'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 123
+SELECT * FROM transactions WHERE id='123'
+  Updating a transaction
+    ID:          123
+    DATE:        2013-10-06
+      year:      2013
+      month:     10
+      day:       06
+    DESCRIPTION: Tee loan
+    CATEGORY:    1
+    AMOUNT:      -374.84
+UPDATE transactions SET date=DATE('2013-10-06'), description='Tee loan', category='1', amount='-374.84' WHERE id='123'
+SELECT * FROM transactions WHERE id='0'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 112
+SELECT * FROM transactions WHERE id='112'
+  Updating a transaction
+    ID:          112
+    DATE:        2013-09-24
+      year:      2013
+      month:     09
+      day:       24
+    DESCRIPTION: Dry Cleaning
+    CATEGORY:    1
+    AMOUNT:      $64.17
+UPDATE transactions SET date=DATE('2013-09-24'), description='Dry Cleaning', category='1', amount='$64.17' WHERE id='112'
+SELECT * FROM transactions WHERE id='0'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for 09/2013
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-09-01') AND DATE('2013-09-30') ORDER BY date
+  Getting by ID: 112
+SELECT * FROM transactions WHERE id='112'
+  Updating a transaction
+    ID:          112
+    DATE:        2013-09-24
+      year:      2013
+      month:     09
+      day:       24
+    DESCRIPTION: Dry Cleaning
+    CATEGORY:    1
+    AMOUNT:      -64.17
+UPDATE transactions SET date=DATE('2013-09-24'), description='Dry Cleaning', category='1', amount='-64.17' WHERE id='112'
+SELECT * FROM transactions WHERE id='0'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for 09/2013
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-09-01') AND DATE('2013-09-30') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Inserting a transaction
+    DATE:        2013-10-30
+      year:      2013
+      month:     10
+      day:       30
+    DESCRIPTION: Cranberry Storage
+    CATEGORY:    1
+    AMOUNT:      -63.60
+INSERT INTO transactions (date, description, category, amount) VALUES (DATE('2013-10-30'),'Cranberry Storage','1','-63.60')
+SELECT * FROM transactions WHERE id='124'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 122
+SELECT * FROM transactions WHERE id='122'
+  Deleting a transaction
+    ID: 122
+DELETE FROM transactions WHERE id='122'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+  Getting by ID: 103
+SELECT * FROM transactions WHERE id='103'
+  Getting transactions for this month: 10
+SELECT * FROM transactions WHERE date BETWEEN DATE('2013-10-01') AND DATE('2013-10-31') ORDER BY date
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.
+localhost 8080
+ExpressJS server started on @[localhost], port [8080], in [development] mode.

@@ -1,4 +1,10 @@
 $(function() {
+
+    /////////////////////////////////////////
+    // Fast click - Eliminate the ~300ms
+    // delay in clicks on mobile web browsers
+    /////////////////////////////////////////
+    FastClick.attach(document.body);
     
     var date = new Date();
     var year = date.getYear();

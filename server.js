@@ -13,7 +13,7 @@ var os = require('os');
 // Globals
 ///////////
 var application_root = __dirname;
-var host = "http:// " + os.hostname(); //config.app.address;
+var host = "http://" + os.hostname(); //config.app.address;
 var port = config.app.port;
 
 console.log(host + " " + port);

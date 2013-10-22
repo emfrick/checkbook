@@ -7,12 +7,13 @@ var app = new express();
 var server = http.createServer(app);
 var db = require('./database');
 var config = require('./config');
+var os = require('os');
 
 ///////////
 // Globals
 ///////////
 var application_root = __dirname;
-var host = config.app.address;
+var host = os.hostname(); //config.app.address;
 var port = config.app.port;
 
 console.log(host + " " + port);

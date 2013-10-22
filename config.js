@@ -11,6 +11,6 @@ config.database.socket   = "/opt/mysql/mysql.sock";
 
 config.app.environment   = process.env.APP_ENV     || "development";
 config.app.port          = process.env.NODE_PORT   || 8080;
-config.app.address       = process.env.NODE_IPADDR || os.hostname();
+config.app.address       = process.env.NODE_IPADDR || "localhost";
 
 module.exports = config;

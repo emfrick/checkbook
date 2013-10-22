@@ -3,6 +3,7 @@ var config = require('./config');
 
 // Database setup
 exports.conn = mysql.createConnection({
+  hostname   : config.database.hostname,
   user       : config.database.user,
   password   : config.database.password,
   socketPath : config.database.socket,

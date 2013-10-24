@@ -29,7 +29,7 @@ app.configure(function() {
 });
 
 // Start the server and connect to the database
-server.listen(port, host, function() {
+server.listen(port, function() {
     console.log("ExpressJS server started on @[%s], port [%d], in [%s] mode.", host, port, app.settings.env);
     db.conn.connect();
 });

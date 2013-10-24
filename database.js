@@ -2,13 +2,18 @@ var mysql = require('mysql');
 var config = require('./config');
 
 // Database setup
-exports.conn = mysql.createConnection({
-  hostname   : config.database.hostname,
-  user       : config.database.user,
-  password   : config.database.password,
-  socketPath : config.database.socket,
-  database   : config.database.name,
-});
+if (config.app.environment == "production") {
+    exports.conn = mysql.createConnection(process.env.DATABASE_URL);
+}
+else {
+    exports.conn = mysql.createConnection({
+      hostname   : config.database.hostname,
+      user       : config.database.user,
+      password   : config.database.password,
+      socketPath : config.database.socket,
+      database   : config.database.name,
+    });
+}
 
 // Get all transactions ever
 exports.getAll = function(callback) {

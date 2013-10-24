@@ -19,7 +19,7 @@ else {
 // lost due to either server restart, or a
 // connnection idle timeout (the wait_timeout
 // server variable configures this)
-conn.on('error', function(err) {
+exports.conn.on('error', function(err) {
     console.log('Database Error', err);
     if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
         exports.conn = mysql.createConnection(process.env.DATABASE_URL);

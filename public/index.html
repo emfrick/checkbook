@@ -78,8 +78,8 @@
         <div class="panel panel-info">
             <div class="panel-heading"><%= transaction.get("description") %></div>
             <div style="display: none">
-                <div class="panel-body"><h5>Amount: </h5>$<%= transaction.get("amount").toFixed(2) %></div>
                 <div class="panel-body"><h5>Date: </h5><%= month %>/<%= day %>/<%= year %></div>
+                <div class="panel-body"><h5>Amount: </h5>$<%= transaction.get("amount").toFixed(2) %></div>
                 <div class="panel-body"><a href='#/edit/<%= transaction.id %>' class='btn btn-info'>Edit</a></div>
             </div>
         </div>

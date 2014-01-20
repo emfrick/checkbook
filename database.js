@@ -2,18 +2,21 @@ var mysql = require('mysql');
 var config = require('./config');
 
 // Database setup
-if (config.app.environment == "production") {
-    exports.conn = mysql.createConnection(process.env.DATABASE_URL);
-}
-else {
-    exports.conn = mysql.createConnection({
-      hostname   : config.database.hostname,
-      user       : config.database.user,
-      password   : config.database.password,
-      socketPath : config.database.socket,
-      database   : config.database.name,
-    });
-}
+Setup();
+function Setup() {
+    if (config.app.environment == "production") {
+        exports.conn = mysql.createConnection(process.env.DATABASE_URL);
+    }
+    else {
+        exports.conn = mysql.createConnection({
+            hostname   : config.database.hostname,
+            user       : config.database.user,
+            password   : config.database.password,
+            socketPath : config.database.socket,
+            database   : config.database.name,
+        });
+    }
+};
 
 // Connection to the MySQL server is usually
 // lost due to either server restart, or a
@@ -22,7 +25,7 @@ else {
 exports.conn.on('error', function(err) {
     console.log('Database Error', err);
     if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
-        exports.conn = mysql.createConnection(process.env.DATABASE_URL);
+        Setup();
     } 
     else {
         throw err;

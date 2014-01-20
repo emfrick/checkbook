@@ -83,6 +83,18 @@ $(function() {
                     self.$el.html("ERROR: Could not fetch transaction!");
                 }
             });
+        },
+
+        events: {
+            'click .panel-heading': 'toggleHidden'
+        },
+        
+        toggleHidden: function(evt) {
+            //console.log("NextUp: " + evt.target.nextElementSibling);
+            //for (key in evt.target) {
+            //    console.log("Key: " + key + "\tVal: " + evt.target[key]);
+            //}
+            $(evt.target.nextElementSibling).toggle();
         }
     });
     

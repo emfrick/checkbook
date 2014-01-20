@@ -35,7 +35,7 @@ exports.conn.on('error', function(err) {
 // Get all transactions ever
 exports.getAll = function(callback) {
     var strQuery = "SELECT * FROM transactions " +
-                   "ORDER BY date";
+                   "ORDER BY date, amount";
     console.log(strQuery);
 
     this.conn.query(strQuery, function(err, rows, fields) {
@@ -50,7 +50,8 @@ exports.getByYear = function(year, callback) {
     var strQuery = "SELECT * FROM transactions " +
                    "WHERE date " + 
                    "BETWEEN DATE('" + year + "-01-01') " +
-                   "AND DATE('" + year + "-12-31')";
+                   "AND DATE('" + year + "-12-31') " +
+                   "ORDER BY date, amount";
     console.log(strQuery);
 
     this.conn.query(strQuery, function(err, rows, fields) {
@@ -69,7 +70,7 @@ exports.getByMonth = function(year, month, callback) {
                    "WHERE date " +
                    "BETWEEN DATE('" + year + "-" + month + "-01') " +
                    "AND DATE('" + year + "-" + month + "-" + lastday + "') " +
-                   "ORDER BY date";
+                   "ORDER BY date, amount";
     console.log(strQuery);
 
     this.conn.query(strQuery, function(err, rows, fields) {
@@ -82,7 +83,8 @@ exports.getByMonth = function(year, month, callback) {
 // Get all transactions that happened on a certain day
 exports.getByDay = function(year, month, day, callback) {
     var strQuery = "SELECT * FROM transactions " +
-                   "WHERE date = DATE('" + year + "-" + month + "-" + day + "')";
+                   "WHERE date = DATE('" + year + "-" + month + "-" + day + "') " +
+                   "ORDER BY amount";
     console.log(strQuery);
 
     this.conn.query(strQuery, function(err, rows, fields) {
